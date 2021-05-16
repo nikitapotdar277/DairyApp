@@ -44,10 +44,11 @@ public class UserProfile extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_info);
-        mainList = (ListView) findViewById(R.id.listview) ;
+        mainList = findViewById(R.id.listview);
         db = FirebaseDatabase.getInstance();
         user = db.getReference("Users");
         System.out.println("Hello");
+        System.out.println(someUser);
 //        String currentUser = userinfo.uname;
 
         user.orderByChild("username_reg").equalTo(someUser).addListenerForSingleValueEvent(
@@ -84,11 +85,11 @@ public class UserProfile extends AppCompatActivity{
             String email=datas.child("emailID").getValue().toString();
 
             ArrayList<String> array = new ArrayList<>();
-            array.add(username);
-            array.add(name);
-            array.add(address);
-            array.add(phone_no);
-            array.add(email);
+            array.add("Username: " + username);
+            array.add("Name: " + name);
+            array.add("Address: " + address);
+            array.add("Contact Number: " + phone_no);
+            array.add("Email id: " + email);
             System.out.println(name);
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1,array);
             mainList.setAdapter(adapter);

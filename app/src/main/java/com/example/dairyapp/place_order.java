@@ -37,38 +37,38 @@ public class place_order extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
 
-        Header header = (Header) findViewById(R.id.header);
-        header.initHeader();
-        header.findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+        Intent man = getIntent();
+        String usnm = man.getStringExtra(LoginPage.Extra_String15);
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), UserProfile.class);
-                view.getContext().startActivity(intent);
-            }
+        Header header = findViewById(R.id.header);
+        header.initHeader();
+        header.findViewById(R.id.profile).setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), UserProfile.class);
+            intent.putExtra(MainActivity.Extra_username, usnm);
+            view.getContext().startActivity(intent);
         });
 
-        final Button total=(Button)findViewById(R.id.total);
+        final Button total= findViewById(R.id.total);
 
-        final TextView t6 = (TextView)findViewById(R.id.t6);
+        final TextView t6 = findViewById(R.id.t6);
 
-        final TextView t2 = (TextView)findViewById(R.id.t2);
+        final TextView t2 = findViewById(R.id.t2);
 
         Intent i = getIntent();
         Intent main =getIntent();
 
         String tv1 = i.getStringExtra(CowMilk.Extra_String);
-        final TextView tv = (TextView)findViewById(R.id.t4);
+        final TextView tv = findViewById(R.id.t4);
         tv.setText(tv1);
 
         String tv2 = i.getStringExtra(MainActivity.Extra_String1);
-        final TextView tvv = (TextView)findViewById(R.id.t5);
+        final TextView tvv = findViewById(R.id.t5);
         tvv.setText(tv2);
 
         String tv3 = main.getStringExtra(LoginPage.Extra_String15);
-        final TextView tvvv = (TextView)findViewById(R.id.t3);
+        final TextView tvvv = findViewById(R.id.t3);
         tvvv.setText(tv3);
-        final EditText etx = (EditText)findViewById(R.id.et1);
+        final EditText etx = findViewById(R.id.et1);
 
         String date=t2.getText().toString();//date
         String uname=tvvv.getText().toString();//username
@@ -79,102 +79,93 @@ public class place_order extends AppCompatActivity {
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         t2.setText(currentDateTimeString);
 
-        total.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        total.setOnClickListener(v -> {
 
-                String x;
+            String x;
 
-                String num = etx.getText().toString();
-                double quantity=0;
+            String num = etx.getText().toString();
+            double quantity=0;
 
-                if(!num.isEmpty()) {
-                    quantity = Double.parseDouble(num);
-                }
-                else {
-                    etx.setError("Enter Quantity");
+            if(!num.isEmpty()) {
+                quantity = Double.parseDouble(num);
+            }
+            else {
+                etx.setError("Enter Quantity");
 
-                }
-                String item = tv.getText().toString();
+            }
+            String item = tv.getText().toString();
 
-                //if(!num.isEmpty()) {      //etx.setError("Enter Quantity");
-                if ((quantity % (0.125)) == 0.00 && quantity!=0) {
-                    if (item.equals("Cow Milk")) {
-                        result = quantity * 45;
+            //if(!num.isEmpty()) {      //etx.setError("Enter Quantity");
+            if ((quantity % (0.125)) == 0.00 && quantity!=0) {
+                if (item.equals("Cow Milk")) {
+                    result = quantity * 45;
+                    t6.setText(Double.toString(result));
+                } else if (item.equals("Buffalo Milk")) {
+                    result = quantity * 60;
+                    t6.setText(Double.toString(result));
+                } else if (item.equals("Paneer")) {
+                    result = quantity * 260;
+                    t6.setText(Double.toString(result));
+                } else if (item.equals("Curd")) {
+                    result = quantity * 100;
+                    t6.setText(Double.toString(result));
+                } else if (item.equals("Eggs")) {
+                    if (quantity % 1 == 0 && quantity >= 6) {
+                        result = quantity * 5;
                         t6.setText(Double.toString(result));
-                    } else if (item.equals("Buffalo Milk")) {
-                        result = quantity * 60;
-                        t6.setText(Double.toString(result));
-                    } else if (item.equals("Paneer")) {
-                        result = quantity * 260;
-                        t6.setText(Double.toString(result));
-                    } else if (item.equals("Curd")) {
-                        result = quantity * 100;
-                        t6.setText(Double.toString(result));
-                    } else if (item.equals("Eggs")) {
-                        if (quantity % 1 == 0 && quantity >= 6) {
-                            result = quantity * 5;
-                            t6.setText(Double.toString(result));
-                        } else {
-                            etx.setError("Enter Valid Quantity and Greater than 6");
-                        }
-                    } else if (item.equals("Butter")) {
-                        result = quantity * 200;
-                        t6.setText(Double.toString(result));
+                    } else {
+                        etx.setError("Enter Valid Quantity and Greater than 6");
                     }
+                } else if (item.equals("Butter")) {
+                    result = quantity * 200;
+                    t6.setText(Double.toString(result));
                 }
+            }
 
-                else {
-                    //Toast.makeText(this, "Enter VAlid Quantity", Toast.LENGTH_SHORT).show();
-                    etx.setError("Enter Valid Quantity");
-                }
+            else {
+                //Toast.makeText(this, "Enter VAlid Quantity", Toast.LENGTH_SHORT).show();
+                etx.setError("Enter Valid Quantity");
             }
         });
 
 
         final String tot = t6.getText().toString();
-        Place_order=(Button)findViewById(R.id.b1);
+        Place_order= findViewById(R.id.b1);
         //tv = (TextView)findViewById(R.id.tv);
-        Place_order.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-
-
-            public void onClick(View v) {
-                final User2 userr=new User2(tvvv.getText().toString(),
-                        tv.getText().toString(),t2.getText().toString(),
-                        t6.getText().toString(),etx.getText().toString());
-                users.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(userr.getUname()).exists()){
-                            users.child(userr.getUname()).child("Myorder").child(userr.getDate()).setValue(userr);
-                            Toast.makeText(place_order.this,"data updated",Toast.LENGTH_SHORT).show();
-                        }
+        Place_order.setOnClickListener(v -> {
+            final User2 userr=new User2(tvvv.getText().toString(),
+                    tv.getText().toString(),t2.getText().toString(),
+                    t6.getText().toString(),etx.getText().toString());
+            users.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child(userr.getUname()).exists()){
+                        users.child(userr.getUname()).child("Myorder").child(userr.getDate()).setValue(userr);
+                        Toast.makeText(place_order.this,"data updated",Toast.LENGTH_SHORT).show();
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                String quantity = etx.getText().toString();
-                //String x  = Double.valueOf(quantity);
-
-                if(!quantity.isEmpty())
-                {
-                    bill_Page(t6.getText().toString());
-                }
-                else
-                {
-                    finish();
-                    startActivity(getIntent());
-
                 }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            String quantity = etx.getText().toString();
+            //String x  = Double.valueOf(quantity);
+
+            if(!quantity.isEmpty())
+            {
+                bill_Page(t6.getText().toString());
+            }
+            else
+            {
+                finish();
+                startActivity(getIntent());
 
             }
+
+
         });
     }
     private void bill_Page(String s)

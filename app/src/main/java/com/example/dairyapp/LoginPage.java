@@ -34,37 +34,21 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_login);
 
-        Username = (EditText) findViewById(R.id.etUsername);
+        Username = findViewById(R.id.etUsername);
 
-        Password = (EditText) findViewById(R.id.etPassword);
-        Login = (Button) findViewById(R.id.btnLogin);
-        Register = (Button) findViewById(R.id.btn_Reg);
+        Password = findViewById(R.id.etPassword);
+        Login = findViewById(R.id.btnLogin);
+        Register = findViewById(R.id.btn_Reg);
 
         db = FirebaseDatabase.getInstance();
         users1 = db.getReference("Users");
 
-        Login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validate(Username.getText().toString(), Password.getText().toString(),Username.getText().toString());
-            }
-        });
+        Login.setOnClickListener(view -> validate(Username.getText().toString(), Password.getText().toString(),Username.getText().toString()));
 
-        Register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerPage();
-            }
-        });
+        Register.setOnClickListener(view -> registerPage());
     }
 
     private void validate(final String userName, final String passWord, final String s1) {
-        /* if ((userName.equals("Admin"))&&(userPassword.equals("abcd")))
-         {
-             Intent main=new Intent(LoginPage.this,AdminActivity.class);
-             startActivity(main);
-         }*/
-        // signIn(Username.getText().toString(),Password.getText().toString());
         users1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -74,12 +58,13 @@ public class LoginPage extends AppCompatActivity {
                     if (!userName.isEmpty()) {
                         User login = dataSnapshot.child(userName).getValue(User.class);
 
+                        assert login != null;
                         if (login.getPassword_reg().equals(passWord)) {
                             Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent main = new Intent(LoginPage.this, MainActivity.class);
                             //Intent i1= new Intent(LoginPage.this, place_order.class);
                             main.putExtra(Extra_String15,s1);
-//                            main.putExtra(Extra_String12,s1);
+                            main.putExtra(Extra_String12,s1);
                             startActivity(main);
 
                         }
