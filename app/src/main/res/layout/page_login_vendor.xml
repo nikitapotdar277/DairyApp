@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.026" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnVendorLogin"
         android:layout_width="261dp"
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.094" />
 
     <Button
-        android:id="@+id/btn_Reg"
+        android:id="@+id/btn_vendor_reg"
         android:layout_width="261dp"
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
@@ -91,7 +91,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnVendorLogin"
         app:layout_constraintVertical_bias="0.194" />
 
     <TextView
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_Reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnVendorLogin" />
 
     <ImageView
         android:id="@+id/imageView"

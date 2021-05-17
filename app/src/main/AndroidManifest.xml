@@ -28,6 +28,8 @@
         <activity android:name=".place_order" />
         <activity android:name=".BillPage" />
         <activity android:name=".UserProfile" />
+        <activity android:name=".VendorLoginPage"/>
+        <activity android:name=".VendorRegisterPage"/>
 
     </application>
 
