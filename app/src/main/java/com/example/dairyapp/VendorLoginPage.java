@@ -38,7 +38,7 @@ public class VendorLoginPage extends AppCompatActivity {
 
         VendorPassword = (EditText) findViewById(R.id.et_Vendor_Password);
         Login = (Button) findViewById(R.id.btnVendorLogin);
-        Register = (Button) findViewById(R.id.btn_Vendor_Register_Page);
+        Register = (Button) findViewById(R.id.btn_vendor_reg);
 
         db = FirebaseDatabase.getInstance();
         vendor1 = db.getReference("Vendor");
@@ -56,6 +56,8 @@ public class VendorLoginPage extends AppCompatActivity {
                 registerPage();
             }
         });
+
+
     }
 
     private void validate(final String userName, final String passWord, final String s1) {

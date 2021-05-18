@@ -41,7 +41,7 @@ public class VendorRegisterPage extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_register);
+        setContentView(R.layout.page_register_vendor);
         db = FirebaseDatabase.getInstance();
         Vendor = db.getReference("Vendor");
 
@@ -242,7 +242,7 @@ public class VendorRegisterPage extends AppCompatActivity{
                 if(dataSnapshot.child(vendor.getUsername_reg()).exists()){
                     Toast.makeText(VendorRegisterPage.this,"Username already exists",Toast.LENGTH_SHORT).show();
                 }
-                else if(x==8)
+                else if(x==9)
                 {
                     Vendor.child(vendor.getUsername_reg()).setValue(vendor);
                     Toast.makeText(VendorRegisterPage.this,"Registration Successful",Toast.LENGTH_SHORT).show();
@@ -256,7 +256,7 @@ public class VendorRegisterPage extends AppCompatActivity{
             }
         });
 
-        if(x==7)
+        if(x==9)
         {
             startActivity(new Intent(this, LoginPage.class));
         }
@@ -293,6 +293,14 @@ public class VendorRegisterPage extends AppCompatActivity{
             VendorDairyAddress.setError("Please Enter Valid Dairy Address");
             v = false;
         }
+        if(vusern.isEmpty()){
+            VendorDairyAddress.setError("Please Enter Valid Data");
+            v = false;
+        }
+        if(vpass.isEmpty()){
+            VendorDairyAddress.setError("Please Enter Valid Data");
+            v = false;
+        }
         return v;
     }
 
@@ -301,6 +309,7 @@ public class VendorRegisterPage extends AppCompatActivity{
         vlname = VendorLastName.getText().toString().trim();
         vmob = VendorMobile.getText().toString().trim();
         vemail = VendorEmailID.getText().toString().trim();
+        vdname = VendorDairyName.getText().toString().trim();
         vadd = VendorDairyAddress.getText().toString().trim();
         vusern = VendorUsername_reg.getText().toString().trim();
         vpass = VendorPassword_reg.getText().toString().trim();

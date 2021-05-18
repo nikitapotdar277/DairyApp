@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MyOrder"></activity>
-<!--        <activity-->
-<!--            android:name=".SplashScreen"-->
-<!--            android:theme="@style/SplashScreen">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Intro.IntroActivity"
 
             android:theme="@style/AppThemeNo">
@@ -39,6 +39,7 @@
         <activity android:name=".place_order" />
         <activity android:name=".BillPage" />
         <activity android:name=".UserProfile" />
+
 
 
 
