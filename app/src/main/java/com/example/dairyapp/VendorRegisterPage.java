@@ -43,7 +43,7 @@ public class VendorRegisterPage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_register_vendor);
         db = FirebaseDatabase.getInstance();
-        Vendor = db.getReference("Vendor");
+            Vendor = db.getReference("Vendor");
 
 
         VendorFirstName = (EditText) findViewById(R.id.et_Vendor_FirstName);
@@ -52,7 +52,7 @@ public class VendorRegisterPage extends AppCompatActivity{
         VendorEmailID = (EditText) findViewById(R.id.et_Vendor_Email);
         VendorDairyName = (EditText) findViewById(R.id.et_dairyname);
         VendorDairyAddress = (EditText) findViewById(R.id.et_dairyaddress);
-        VendorUsername_reg = (EditText) findViewById(R.id.et_Vendor_Username);
+        VendorUsername_reg = (EditText) findViewById(R.id.et_Vendor_Username_Register);
         VendorPassword_reg = (EditText) findViewById(R.id.etp_Vendor_Password_Register);
         VendorRegister_reg = (Button) findViewById(R.id.btn_Vendor_Register_Page);
         Refresh = (Button)findViewById(R.id.ref_btn);
@@ -68,11 +68,11 @@ public class VendorRegisterPage extends AppCompatActivity{
         VendorRegister_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register();
+                registerVendor();
             }
         });
     }
-    public void register(){
+    public void registerVendor(){
         initialize();
 
         String validemail = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,128}" +
@@ -239,12 +239,12 @@ public class VendorRegisterPage extends AppCompatActivity{
         Vendor.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(vendor.getUsername_reg()).exists()){
+                if(dataSnapshot.child(vendor.getVendorUsername_reg()).exists()){
                     Toast.makeText(VendorRegisterPage.this,"Username already exists",Toast.LENGTH_SHORT).show();
                 }
-                else if(x==9)
+                else if(x==8)
                 {
-                    Vendor.child(vendor.getUsername_reg()).setValue(vendor);
+                    Vendor.child(vendor.getVendorUsername_reg()).setValue(vendor);
                     Toast.makeText(VendorRegisterPage.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(this, LoginPage.class));
                 }
@@ -256,11 +256,10 @@ public class VendorRegisterPage extends AppCompatActivity{
             }
         });
 
-        if(x==9)
-        {
+        if(x==8) {
             startActivity(new Intent(this, LoginPage.class));
-        }
 
+        }
         //startActivity(new Intent(this, LoginPage.class));
     }
 

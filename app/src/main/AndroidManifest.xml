@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dairyapp">
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,19 +10,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyOrder"></activity>
+<!--        <activity-->
+<!--            android:name=".VendorHome"-->
+<!--            android:label="@string/title_activity_vendor_home">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+
+
+        <activity android:name=".MyOrder" /> <!-- <activity android:name=".Intro.IntroActivity" -->
+        <!-- android:theme="@style/AppThemeNo"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".SplashScreen"
             android:theme="@style/SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Intro.IntroActivity"
-
-            android:theme="@style/AppThemeNo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,16 +48,13 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".LoginPage" />
         <activity android:name=".RegisterPage" />
-        <activity android:name=".VendorLoginPage"/>
-        <activity android:name=".VendorRegisterPage"/>
+        <activity android:name=".VendorLoginPage" />
+        <activity android:name=".VendorRegisterPage" />
         <activity android:name=".CowMilk" />
         <activity android:name=".place_order" />
         <activity android:name=".BillPage" />
         <activity android:name=".UserProfile" />
-
-
-
-
+        <activity android:name=".VendorHome"/>
     </application>
 
 </manifest>

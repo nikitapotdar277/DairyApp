@@ -76,9 +76,9 @@ public class VendorLoginPage extends AppCompatActivity {
                     if (!userName.isEmpty()) {
                         Vendor login = dataSnapshot.child(userName).getValue(Vendor.class);
 
-                        if (login.getPassword_reg().equals(passWord)) {
+                        if (login.getVendorPassword_reg().equals(passWord)) {
                             Toast.makeText(VendorLoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            Intent main = new Intent(VendorLoginPage.this, MainActivity.class);
+                            Intent main = new Intent(VendorLoginPage.this, VendorHome.class);
                             //Intent i1= new Intent(LoginPage.this, place_order.class);
                             main.putExtra(Extra_String15,s1);
 //                            main.putExtra(Extra_String12,s1);
