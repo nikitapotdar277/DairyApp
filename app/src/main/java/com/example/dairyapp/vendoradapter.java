@@ -22,9 +22,9 @@ public class vendoradapter extends FirebaseRecyclerAdapter<model,vendoradapter.m
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull model model) {
-        holder.user.setText(model.getName());
-        holder.product.setText(model.getProduct());
-        holder.total.setText(model.getTotal());
+        holder.user.setText(model.getName().toString());
+        holder.product.setText(model.getProduct().toString());
+        holder.total.setText(model.getTotal().toString());
 //        holder.img.setImageResource(model.ge);
 //        Glide.with(holder.img.getContext()).load( )
     }

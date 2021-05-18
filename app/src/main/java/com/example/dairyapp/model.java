@@ -8,6 +8,15 @@ public class model {
 
     }
 
+    public model(String name) {
+        this.name = name;
+    }
+
+    public model(String product, String total) {
+        this.product = product;
+        this.total = total;
+    }
+
     public model(String name, String product, String total) {
         this.name = name;
         this.product = product;

@@ -31,16 +31,16 @@ public class VendorHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vendor_home);
+        setContentView(R.layout.recycler_view);
 
-
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recview = (RecyclerView)findViewById(R.id.recyclerview);
-        recview.setLayoutManager(new LinearLayoutManager(this));
-
+        recview.setLayoutManager(layoutManager);
 
         FirebaseRecyclerOptions<model> options =
                 new FirebaseRecyclerOptions.Builder<model>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Vendor"), model.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Vendor").child("xyz"), model.class)
                         .build();
 
 
@@ -52,30 +52,30 @@ public class VendorHome extends AppCompatActivity {
 
 
         availibility = (Switch)findViewById(R.id.service_availability);
-        SharedPreferences sharedPreferences = getSharedPreferences("save",MODE_PRIVATE);
-        availibility.setChecked(sharedPreferences.getBoolean("value",true));
-
-        availibility.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (availibility.isChecked()){
-                    SharedPreferences.Editor editor = getSharedPreferences("save",MODE_PRIVATE).edit();
-                    editor.putBoolean("value",true);
-                    editor.apply();
-                    availibility.setChecked(true);
-                }
-                else {
-                    SharedPreferences.Editor editor = getSharedPreferences("save",MODE_PRIVATE).edit();
-                    editor.putBoolean("value",false);
-                    editor.apply();
-                    availibility.setChecked(false);
-                }
-            
-//           availibility_func();
-            
-            }
-        });
+//        SharedPreferences sharedPreferences = getSharedPreferences("save",MODE_PRIVATE);
+//        availibility.setChecked(sharedPreferences.getBoolean("value",true));
+//
+//        availibility.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (availibility.isChecked()){
+//                    SharedPreferences.Editor editor = getSharedPreferences("save",MODE_PRIVATE).edit();
+//                    editor.putBoolean("value",true);
+//                    editor.apply();
+//                    availibility.setChecked(true);
+//                }
+//                else {
+//                    SharedPreferences.Editor editor = getSharedPreferences("save",MODE_PRIVATE).edit();
+//                    editor.putBoolean("value",false);
+//                    editor.apply();
+//                    availibility.setChecked(false);
+//                }
+//
+////           availibility_func();
+//
+//            }
+//        });
     }
 
 
