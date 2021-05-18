@@ -2,16 +2,21 @@ package com.example.dairyapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +24,31 @@ import java.util.Map;
 public class VendorHome extends AppCompatActivity {
 
     Switch availibility;
+   RecyclerView recview;
+    vendoradapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_home);
+
+
+        recview = (RecyclerView)findViewById(R.id.recyclerview);
+        recview.setLayoutManager(new LinearLayoutManager(this));
+
+
+        FirebaseRecyclerOptions<model> options =
+                new FirebaseRecyclerOptions.Builder<model>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Vendor"), model.class)
+                        .build();
+
+
+        adapter = new vendoradapter(options);
+        recview.setAdapter(adapter);
+
+
+
 
 
         availibility = (Switch)findViewById(R.id.service_availability);
@@ -52,6 +76,19 @@ public class VendorHome extends AppCompatActivity {
             
             }
         });
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
     private void availibility_func() {

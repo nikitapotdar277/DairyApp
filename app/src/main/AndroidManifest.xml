@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dairyapp">
 
-
+<uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -55,6 +55,7 @@
         <activity android:name=".BillPage" />
         <activity android:name=".UserProfile" />
         <activity android:name=".VendorHome"/>
+
     </application>
 
 </manifest>
