@@ -47,9 +47,7 @@ public class UserProfile extends AppCompatActivity{
         mainList = findViewById(R.id.listview);
         db = FirebaseDatabase.getInstance();
         user = db.getReference("Users");
-        System.out.println("Hello");
         System.out.println(someUser);
-//        String currentUser = userinfo.uname;
 
         user.orderByChild("username_reg").equalTo(someUser).addListenerForSingleValueEvent(
                 new ValueEventListener() {

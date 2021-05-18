@@ -38,6 +38,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Header header = (Header) findViewById(R.id.header);
         header.initHeader();
+        header.findViewById(R.id.cart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), Cart1.class);
+                i.putExtra(place_order.Extra_username, usnm);
+                view.getContext().startActivity(i);
+            }
+        });
         header.findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
 
             @Override

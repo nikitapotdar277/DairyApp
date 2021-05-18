@@ -39,9 +39,17 @@ public class BillPage extends AppCompatActivity {
 
         Header header = findViewById(R.id.header);
         header.initHeader();
+        header.findViewById(R.id.cart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), Cart1.class);
+                i.putExtra(place_order.Extra_username, usnm);
+                view.getContext().startActivity(i);
+            }
+        });
         header.findViewById(R.id.profile).setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), UserProfile.class);
-            intent.putExtra(MainActivity.Extra_username, usnm);
+            intent.putExtra(MainActivity.Extra_username, usnm1);
             view.getContext().startActivity(intent);
         });
 
