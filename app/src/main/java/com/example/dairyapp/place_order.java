@@ -1,5 +1,6 @@
 package com.example.dairyapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +32,8 @@ public class place_order extends AppCompatActivity {
     Button total;
     FirebaseDatabase db;
     DatabaseReference users;
-    public static final String Extra_String3 = "com.example.dark_1.Extra_String3";
+    public static final String Extra_username = "com.example.dark_1.Extra_String3";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +73,6 @@ public class place_order extends AppCompatActivity {
         final TextView tvvv = findViewById(R.id.t3);
         tvvv.setText(tv3);
         final EditText etx = findViewById(R.id.et1);
-
-        String date=t2.getText().toString();//date
-        String uname=tvvv.getText().toString();//username
-        String item1=tv.getText().toString();//item
-        String qt=etx.getText().toString();//quantity
-        final String total1=t6.getText().toString();//total
 
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
         t2.setText(currentDateTimeString);
@@ -135,18 +133,19 @@ public class place_order extends AppCompatActivity {
         Place_order.setOnClickListener(v -> {
             final User2 userr=new User2(tvvv.getText().toString(),
                     tv.getText().toString(),t2.getText().toString(),
-                    t6.getText().toString(),etx.getText().toString());
-            users.addListenerForSingleValueEvent(new ValueEventListener() {
+                    t6.getText().toString(),etx.getText().toString(),"Ordered");
+
+            users.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.child(userr.getUname()).exists()){
-                        users.child(userr.getUname()).child("Myorder").child(userr.getDate()).setValue(userr);
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.child(userr.getUname()).exists()){
+                        users.child(userr.getUname()).child("Cart").child(userr.getDate()).setValue(userr);
                         Toast.makeText(place_order.this,"data updated",Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
@@ -156,7 +155,7 @@ public class place_order extends AppCompatActivity {
 
             if(!quantity.isEmpty())
             {
-                bill_Page(t6.getText().toString());
+                sendToCart(userr.getUname(), userr.getItem1(), userr.getQt(), userr.getTotal1(), userr.getDate());
             }
             else
             {
@@ -168,13 +167,15 @@ public class place_order extends AppCompatActivity {
 
         });
     }
-    private void bill_Page(String s)
+    private void sendToCart(String username, String product, String qty, String price, String date)
     {
+        Intent m = getIntent();
         Intent i;
-
-        Toast.makeText(this, "Order Confirmed", Toast.LENGTH_SHORT).show();
-        i = new Intent(this,BillPage.class);
-        i.putExtra(Extra_String3,s);
+        System.out.println("username place_order:");
+        System.out.println(username);
+        Toast.makeText(this, "Added to Cart", Toast.LENGTH_SHORT).show();
+        i = new Intent(this,Cart1.class);
+        i.putExtra(place_order.Extra_username, username);
         startActivity(i);
 
     }

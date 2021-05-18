@@ -14,17 +14,18 @@
             android:background="@android:color/transparent"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/logoText"
             android:layout_width="122dp"
             android:layout_height="36dp"
-            android:layout_marginStart="124dp"
-            android:layout_marginLeft="124dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="8dp"
             android:text="MyDairyApp"
             android:textColor="#FFFCFC"
             android:textSize="18sp"
@@ -33,18 +34,35 @@
             app:layout_constraintTop_toTopOf="@+id/header" />
 
         <ImageButton
-            android:id="@+id/profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="81dp"
-            android:layout_marginLeft="81dp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="@string/mydairyapp"
-            app:layout_constraintEnd_toEndOf="@+id/header"
-            app:layout_constraintHorizontal_bias="0.555"
+            android:id="@+id/cart"
+            android:layout_width="27dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="4dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/profile"
+            app:layout_constraintHorizontal_bias="0.726"
             app:layout_constraintStart_toEndOf="@+id/logoText"
+            app:layout_constraintTop_toTopOf="@+id/header"
+            app:layout_constraintVertical_bias="0.333"
+            app:srcCompat="@drawable/cart1" />
+
+        <ImageButton
+            android:id="@+id/profile"
+            android:layout_width="27dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="10dp"
+            android:background="@null"
+            android:contentDescription="@string/mydairyapp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/header"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toEndOf="@+id/cart"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/person01" />
+            app:srcCompat="@drawable/userprofile" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

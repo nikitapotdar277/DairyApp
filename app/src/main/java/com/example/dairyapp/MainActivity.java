@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String Extra_String1 = "com.example.dark_1.Extra_String1";
     public static final String Extra_username = "com.example.dark_1.Extra_String2";
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);

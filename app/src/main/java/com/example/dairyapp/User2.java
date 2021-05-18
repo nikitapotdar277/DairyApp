@@ -1,11 +1,12 @@
 package com.example.dairyapp;
 
 public class User2 {
-    private String uname,item1,date,total1,qt;
+    private String uname,item1,date,total1,qt,status;
 
     public User2(){}//Empty Contructor
-    public User2(String uname,String item1,String date,String total1,String qt)
+    public User2(String uname,String item1,String date,String total1,String qt,String status)
     {
+        this.status=status;
         this.uname=uname;
         this.item1=item1;
         this.date=date;
@@ -51,4 +52,8 @@ public class User2 {
     public void setQt(String qt) {
         this.qt = qt;
     }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status=status; }
 }

@@ -32,8 +32,9 @@ public class Header extends RelativeLayout {
     private void inflateHeader() {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.header, this);
-        TextView logo = (TextView) findViewById(R.id.logoText);
-        ImageButton profile = (ImageButton) findViewById(R.id.profile);
+        TextView logo = findViewById(R.id.logoText);
+        ImageButton cart = findViewById(R.id.cart);
+        ImageButton profile = findViewById(R.id.profile);
 
     }
 
