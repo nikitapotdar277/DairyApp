@@ -2,6 +2,7 @@ package com.example.dairyapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,6 +23,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CardView milk, Paneer, Curd, eggs,Butter,Myorder,Exit;
+    private ViewPager mSlideViewPager;
+    private LinearLayout mDotLayout;
+    private sliderAdapter sliderAdapter;
+
     TextView tv;
 
     public static final String Extra_String = "com.example.dark_1.Extra_String";
@@ -33,9 +38,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
 
+        //Slider
+        mSlideViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mDotLayout = (LinearLayout) findViewById(R.id.sliderlayout);
+
+        sliderAdapter = new sliderAdapter(this);
+        mSlideViewPager.setAdapter(sliderAdapter);
+
         Intent main = getIntent();
         String usnm = main.getStringExtra(LoginPage.Extra_String15);
         System.out.println(usnm);
+
 
         Header header = (Header) findViewById(R.id.header);
         header.initHeader();
@@ -140,4 +153,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
 }

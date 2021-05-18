@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/slideImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="161dp"
+        android:layout_marginRight="100dp"
+        app:srcCompat="@drawable/milk_2" />
+
+    <TextView
+        android:id="@+id/textheadslider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="362dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="328dp"
+        android:text="Heading"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/textDetailslider"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentBottom="true"
+
+
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="false"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="362dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="102dp"
+        android:padding="35dp"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+</RelativeLayout>
